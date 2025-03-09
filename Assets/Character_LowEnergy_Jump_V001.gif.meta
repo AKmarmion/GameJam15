@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Character_LowEnergy_Jump_V001_0: 6491665955720110794
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
