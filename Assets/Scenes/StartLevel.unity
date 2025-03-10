@@ -253,8 +253,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 732220891}
-  - component: {fileID: 732220889}
   - component: {fileID: 732220888}
+  - component: {fileID: 732220893}
   - component: {fileID: 732220892}
   m_Layer: 0
   m_Name: Player
@@ -300,33 +300,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.07687041, y: -0.4806755}
   m_Size: {x: 2.3067975, y: 6.8067617}
   m_Direction: 0
---- !u!50 &732220889
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732220887}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!4 &732220891
 Transform:
   m_ObjectHideFlags: 0
@@ -358,6 +331,33 @@ MonoBehaviour:
   anim: {fileID: 1742040569}
   speed: 5
   jumpForce: 7
+--- !u!50 &732220893
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732220887}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &1742040567
 GameObject:
   m_ObjectHideFlags: 0
