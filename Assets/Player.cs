@@ -51,6 +51,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
+            anim.SetBool("isJumping", true);
         }
     }
 
@@ -62,7 +63,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void Movement()
     {
         rb.linearVelocity = new Vector2(xInput * speed, rb.linearVelocity.y);
-        Debug.Log("Velocity after Movement: " + rb.linearVelocity);
+        
     }
 
     private void Jump()
@@ -73,9 +74,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void AnimatorControllers()
     {
         bool isMoving = rb.linearVelocity.x != 0;
+        bool isJumping = rb.linearVelocity.y > 0.1f || rb.linearVelocity.y < -0.1f;
 
         anim.SetBool("isMoving", isMoving);
-
+        anim.SetBool("isJumping", isJumping);
     }
 
     private void Flip()
