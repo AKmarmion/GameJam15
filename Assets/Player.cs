@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Windows;
 
 
@@ -15,16 +16,27 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private int facingDirection = 1;
     private bool facingRight = true;
 
+    [SerializeField] private int maxJumps = 4;  
+    private int currentJumps;
+
+    [SerializeField] private float staminaDelay = 2f; 
+    private float delayTimer;
+
+    [SerializeField] private UnityEngine.UI.Image staminaBarFill; 
+
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        currentJumps = maxJumps;
     }
 
 
     void Update()
     {
+        
         CheckInput();
 
         if (xInput == 0)
@@ -40,6 +52,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         FlipController();
         AnimatorControllers();
 
+        HandleStaminaRegen();
+
 
     }
 
@@ -50,6 +64,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Space Pressed!");
             Jump();
             anim.SetBool("isJumping", true);
         }
@@ -68,8 +83,23 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void Jump()
     {
+        if (currentJumps> 0)
+        {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        currentJumps--;
+
+        delayTimer = 0f; //timer reset when jumping
+
+        UpdateStaminaBar();
+        Debug.Log("Jumped! Jumps left: " + currentJumps);
+        }
+        else
+        {
+        Debug.Log("No more jumps available!");
+        }
     }
+
+    
 
     private void AnimatorControllers()
     {
@@ -99,6 +129,39 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
         
     }
+
+    private void HandleStaminaRegen()
+    {
+        if (currentJumps < maxJumps)
+        {
+            delayTimer += Time.deltaTime;
+            if (delayTimer >= staminaDelay)
+            {
+                currentJumps++;
+                delayTimer = 0f;
+                UpdateStaminaBar();
+            }
+        }
+    }
+
+    private void UpdateStaminaBar()
+    {
+        if (staminaBarFill != null)
+        {
+            float fillAmount = Mathf.Clamp01((float)currentJumps / maxJumps);
+            staminaBarFill.fillAmount = fillAmount;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground")) // Ensure platforms are tagged "Ground"
+        {
+            currentJumps = maxJumps;
+            UpdateStaminaBar();
+        }
+    }
+
 
 }
 
