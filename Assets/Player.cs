@@ -25,9 +25,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void Update()
     {
-        Movement();
         CheckInput();
 
+        if (xInput == 0)
+        {
+            Idle();
+        }
+        else
+        {
+            Movement();
+        }
+
+        
         FlipController();
         AnimatorControllers();
 
@@ -37,6 +46,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void CheckInput()
     {
         xInput = UnityEngine.Input.GetAxisRaw("Horizontal");
+        
 
         if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
         {
@@ -44,9 +54,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+    private void Idle()
+    {
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+    }
+
     private void Movement()
     {
         rb.linearVelocity = new Vector2(xInput * speed, rb.linearVelocity.y);
+        Debug.Log("Velocity after Movement: " + rb.linearVelocity);
     }
 
     private void Jump()
@@ -79,6 +95,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             Flip();
         }
+        
     }
 
 }
