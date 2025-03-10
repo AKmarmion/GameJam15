@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 732220892}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
   speed: 5
   jumpForce: 7
   maxJumps: 4
-  staminaDelay: 2
+  staminaDelay: 1
   staminaBarFill: {fileID: 1037835302}
 --- !u!50 &732220893
 Rigidbody2D:
@@ -835,7 +835,7 @@ GameObject:
   - component: {fileID: 1980313134}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

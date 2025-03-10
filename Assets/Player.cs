@@ -22,7 +22,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private float staminaDelay = 2f; 
     private float delayTimer;
 
-    [SerializeField] private UnityEngine.UI.Image staminaBarFill; 
+    [SerializeField] private UnityEngine.UI.Image staminaBarFill;
+
+    private bool isGrounded;
+
 
 
 
@@ -132,7 +135,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void HandleStaminaRegen()
     {
-        if (currentJumps < maxJumps)
+        if (isGrounded && currentJumps < maxJumps)
         {
             delayTimer += Time.deltaTime;
             if (delayTimer >= staminaDelay)
@@ -155,13 +158,20 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground")) // Ensure platforms are tagged "Ground"
+        if (collision.gameObject.CompareTag("Ground")) // Ensure platforms are named "Ground"
         {
-            currentJumps = maxJumps;
-            UpdateStaminaBar();
+            isGrounded = true;
+            
         }
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+       if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
 
 }
 
